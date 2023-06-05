@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import bcrypt from 'bcryptjs'
 import { User } from '../../../models'
 import { db } from '../../../database'
 import { jwt } from '../../../utils'
 
 type Data = 
 | {message: string}
-| {token: string;
-   user: {
+| {
+    token: string;
+    user: {
        email: string, 
        name: string
        role: string, 
@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 }
 const checkJWT =async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const {token= ''} = req.cookies;
+    const {token = ''} = req.cookies;
 
     let userId = '';
     try{
@@ -43,7 +43,7 @@ const checkJWT =async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     if (!user) {
         return res.status(400).json({ message: 'Usuario no existe con ese id' })
     }
-    const{_id, email,role, name} = user;
+    const{ _id, email,role, name} = user;
     
     return res.status(200).json({
         token: jwt.signToken(_id, email),

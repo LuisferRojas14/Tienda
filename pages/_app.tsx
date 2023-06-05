@@ -1,12 +1,18 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import '../styles/globals.css'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { lightTheme } from '../themes'
 import { SWRConfig } from 'swr'
 import { AuthProvider, CartProvider, UiProvider } from '../context'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function App({ Component, pageProps }: AppProps) {
   return (
+    <SessionProvider>
+
+      <PayPalScriptProvider options={{'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || '' }}>
+
     <SWRConfig
       value={{
         fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
@@ -22,8 +28,10 @@ function App({ Component, pageProps }: AppProps) {
         </UiProvider>
       </CartProvider>
       </AuthProvider>
-
     </SWRConfig>
+    </PayPalScriptProvider>
+    </SessionProvider>
+    
 
   )
 }

@@ -55,7 +55,7 @@ const registerUser =async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     }
     catch(error){
         console.log(error);
-        return res.status(500).json({message: 'Revisar logs del servidor'});
+        return res.status(500).json({message: 'Revisar logs del servidor'})
     }
 
    const {_id,role} = newUser;
