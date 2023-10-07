@@ -16,7 +16,7 @@ export const getProductsBySlug = async (slug: string):Promise<IProduct | null> =
         return image.includes('http') ? image : `${process.env.HOST_NAME}products/${image}`
     });
     
-
+    
     return JSON.parse(JSON.stringify(product));
 }
 

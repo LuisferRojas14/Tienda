@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next'
 import ShopLayout from '../../components/layouts/ShopLayout'
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form';
@@ -62,7 +61,7 @@ const AddresPage: FC = () => {
     return (
         <ShopLayout title='Direccion' pageDescription='Confirmar direccion de destino'>
             <form onSubmit={handleSubmit(onSubmitAddress)}>
-                <Typography variant='h1' component='h1'>Direccion</Typography>
+                <Typography variant='h1' component='h1'>Datos de envio</Typography>
                 <Grid container spacing={2} sx={{ mt: 2 }}>
                     <Grid item xs={12} sm={6}>
                         <TextField
